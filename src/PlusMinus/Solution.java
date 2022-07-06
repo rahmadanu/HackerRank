@@ -1,4 +1,4 @@
-package MiniMaxSum;
+package src.PlusMinus;
 
 import java.io.*;
 import java.util.*;
@@ -9,35 +9,30 @@ import static java.util.stream.Collectors.toList;
 class Result {
 
     /*
-     * Complete the 'miniMaxSum' function below.
+     * Complete the 'plusMinus' function below.
      *
      * The function accepts INTEGER_ARRAY arr as parameter.
      */
 
-    public static void miniMaxSum(List<Integer> arr) {
+    public static void plusMinus(List<Integer> arr) {
         // Write your code here
-        long minSum = 0L;
-        long maxSum = 0L;
+        double positive = 0;
+        double negative = 0;
+        double zero = 0;
 
-        for (int i = 0; i < arr.size(); i++) {
-            long sum = 0L;
-
-            for (int j = 0; j < arr.size(); j++) {
-                if (arr.get(i) == arr.get(j)) {
-                    continue;
-                } else {
-                    sum += (long) arr.get(j);
-
-                    if (sum > maxSum) {
-                        maxSum = sum;
-                    } else {
-                        minSum = sum;
-                    }
-                }
+        for (int i: arr) {
+            if (i > 0) {
+                positive++;
+            } else if (i < 0) {
+                negative++;
+            } else {
+                zero++;
             }
         }
 
-        System.out.println(minSum + " " + maxSum);
+        System.out.printf("%.6f%n", positive / arr.size());
+        System.out.printf("%.6f%n", negative / arr.size());
+        System.out.printf("%.6f%n", zero / arr.size());
     }
 
 }
@@ -46,12 +41,15 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
+        int n = Integer.parseInt(bufferedReader.readLine().trim());
+
         List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
                 .map(Integer::parseInt)
                 .collect(toList());
 
-        Result.miniMaxSum(arr);
+        Result.plusMinus(arr);
 
         bufferedReader.close();
     }
 }
+
