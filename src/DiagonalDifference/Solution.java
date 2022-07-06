@@ -3,6 +3,8 @@ package src.DiagonalDifference;
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;
+
+import static java.lang.Math.abs;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
@@ -19,25 +21,13 @@ class Result {
         // Write your code here
         int sumLTR = 0;
         int sumRTL = 0;
-        int result = 0;
 
         for (int i = 0; i < arr.size(); i++) {
-
-            for (int j = 0; j < arr.size(); j++) {
-                sumLTR++;
-            }
+            sumLTR += arr.get(i).get(i);
+            sumRTL += arr.get(i).get((arr.size() - 1) - i);
         }
 
-        for (int i = 0; i < arr.size(); i++) {
-
-            for (int j = arr.size() - 1; j > 0; j--) {
-                sumRTL++;
-            }
-        }
-        result = sumLTR - sumRTL;
-        if (result < 0) result *= result;
-
-        return result;
+        return abs(sumLTR - sumRTL);
     }
 
 }
