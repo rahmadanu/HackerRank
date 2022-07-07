@@ -1,9 +1,11 @@
 package src.MiniMaxSum;
 
-import java.io.*;
-import java.util.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.stream.Stream;
+
 import static java.util.stream.Collectors.toList;
 
 class Result {
@@ -16,28 +18,21 @@ class Result {
 
     public static void miniMaxSum(List<Integer> arr) {
         // Write your code here
-        long minSum = 0L;
-        long maxSum = 0L;
+        long min = Integer.MAX_VALUE;
+        long max = Integer.MIN_VALUE;
+        long sum = 0;
 
-        for (int i = 0; i < arr.size(); i++) {
-            long sum = 0L;
+        for (int i : arr) {
+            if (i < min) min = i;
+            if (i > max) max = i;
 
-            for (int j = 0; j < arr.size(); j++) {
-                if (arr.get(i) == arr.get(j)) {
-                    continue;
-                } else {
-                    sum += (long) arr.get(j);
+//            min = Math.min(min, i);
+//            max = Math.max(max, i);
 
-                    if (sum > maxSum) {
-                        maxSum = sum;
-                    } else {
-                        minSum = sum;
-                    }
-                }
-            }
+            sum += i;
         }
 
-        System.out.println(minSum + " " + maxSum);
+        System.out.println((sum - max) + " " + (sum - min));
     }
 
 }
