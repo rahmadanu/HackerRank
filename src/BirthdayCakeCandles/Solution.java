@@ -30,12 +30,8 @@ class Result {
 
             if (i > tallest) {
                 tallest = i;
-            }
-        }
-
-        for (int i : candles) {
-
-            if (i == tallest) {
+                sum = 1;
+            } else if (i == tallest) {
                 sum++;
             }
         }
